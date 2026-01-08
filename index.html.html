@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sonia</title>
+
+<style>
+/* ===== Background ===== */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a0dad, #b266ff);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* ===== Floating page animation ===== */
+@keyframes floatPage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+    100% { transform: translateY(0); }
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    animation: floatPage 6s ease-in-out infinite;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 15px 36px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: #ffffff;
+    color: #6a0dad;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #f3e6ff;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ===== Cake Styling ===== */
+.cake-area {
+    margin-top: 20px;
+}
+
+.candles {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: -12px;
+}
+
+.candle {
+    width: 12px;
+    height: 55px;
+    background: linear-gradient(#fff, #ddd);
+    border-radius: 6px;
+    position: relative;
+}
+
+.flame {
+    width: 14px;
+    height: 18px;
+    background: radial-gradient(circle, #ffe066, orange, red);
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: -1px;
+    animation: flicker 0.25s infinite alternate;
+}
+
+@keyframes flicker {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.4); opacity: 0.8; }
+}
+
+.cake {
+    width: 220px;
+    margin: auto;
+}
+
+.layer {
+    height: 55px;
+    border-radius: 14px;
+    box-shadow: inset 0 -6px rgba(0,0,0,0.15);
+}
+
+.layer1 {
+    background: linear-gradient(#ffb3d9, #ff69b4);
+}
+
+.layer2 {
+    background: linear-gradient(#ff8ac7, #ff4fa3);
+    width: 190px;
+    margin: 6px auto;
+}
+
+.layer3 {
+    background: linear-gradient(#ff6fb7, #e60073);
+    width: 160px;
+    margin: 6px auto;
+}
+
+.plate {
+    width: 260px;
+    height: 20px;
+    background: #eee;
+    border-radius: 50%;
+    margin: 10px auto;
+}
+
+/* ===== Candle blown out ===== */
+.off {
+    animation: none;
+    opacity: 0;
+}
+
+/* ===== Text ===== */
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Tap to Start -->
+    <button id="startBtn" onclick="start()">🎉 Tap to Start 🎉</button>
+
+    <!-- Cake Section -->
+    <div id="cakeSection" class="hidden cake-area">
+        <div class="candles">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+        </div>
+
+        <div class="cake">
+            <div class="layer layer3"></div>
+            <div class="layer layer2"></div>
+            <div class="layer layer1"></div>
+        </div>
+
+        <div class="plate"></div>
+
+        <button onclick="blowCandles()">💨 Blow the Candles</button>
+    </div>
+
+    <!-- Birthday Message -->
+    <div id="messageSection" class="hidden">
+        <h1>ℍ𝔸ℙℙ𝕐 𝔹𝕀ℝ𝕋ℍ𝔻𝔸𝕐 𝕊𝕆ℕ𝕀𝔸💜</h1>
+        <p>
+            “Another adventure filled year awaits you.  
+            Welcome it by celebrating your birthday with pomp and splendor.  
+            Wishing you a very happy and fun-filled birthday!”
+        </p>
+    </div>
+
+</div>
+
+<script>
+function start() {
+    document.getElementById("startBtn").remove();
+    document.getElementById("cakeSection").style.display = "block";
+}
+
+function blowCandles() {
+    // Stop candle fire animation
+    document.querySelectorAll(".flame").forEach(flame => {
+        flame.classList.add("off");
+    });
+
+    // Remove cake and previous content
+    setTimeout(() => {
+        document.getElementById("cakeSection").remove();
+        document.getElementById("messageSection").style.display = "block";
+    }, 1200);
+}
+</script>
+
+</body>
+</html>
